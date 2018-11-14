@@ -10,7 +10,7 @@ reg[15:0] register;
 always@(posedge clk or posedge reset)
 begin
   if(reset) register <= 0;
-  else if(write) register <= data_in;
+  else register <= data_in;
 end
 
 assign data_out = read? register : 16'hzzzz;
