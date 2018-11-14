@@ -23,22 +23,41 @@ initial // Clock generator
 
 initial begin
 
-//first as an output
-in = 0;
-read = 0;
-write  = 0;
+//as an output
+in = 1;
+
 isIn = 0;
+
+read = 0;
+write = 0;
+
 reset = 0;
-#10
-reset = 1;
-#10
-reset = 0;
-//read from the output register
+#10 reset = 1;
+#10 reset = 0;
+
+#30
+read = 1;
+write = 0;
+#30
+read = 0;
+write = 1;
+#30
+read = 1;
 write = 1;
 
-
-
-
+isIn = 1;
+#30
+read = 0;
+write = 0;
+#30
+read = 1;
+write = 0;
+#30
+read = 0;
+write = 1;
+#30
+read = 1;
+write = 1;
 
 
 
