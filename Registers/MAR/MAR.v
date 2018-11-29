@@ -1,16 +1,18 @@
-module MAR(clk, reset, in_en, out_en, data_in, data_out);
-input clk, reset, in_en, out_en;
-input [15:0] data_in;
-output[15:0] data_out;
+//module MAR(clk, reset, write, read, in_from_bus, out_to_bus); //read is not necessary
+module MAR  (clk, reset, in_from_bus, out_to_bus, write, mem_read); 
+
+input clk, reset, write, read;
+input [15:0] in_from_bus;
+output[15:0] out_to_bus;
 
 reg[15:0] register;
 
 always@(posedge clk or posedge reset)
 begin
   if(reset) register <= 0;
-  else if(in_en) register <= data_in;
+  else if(write) register <= in_from_bus;
 end
 
-assign data_out = out_en? register : 16'hzzzz;
+assign out_to_bus = mem_read? register : 16'hzzzz;
 
 endmodule

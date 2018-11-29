@@ -1,0 +1,11 @@
+module ALU  (clk, reset, in_from_bus, out_to_bus, read, writeIN1, writeIN2, alu_out_en, OpControl);
+module MAR  (clk, reset, in_from_bus, out_to_bus, read, write); //out_en is not necessary
+module MDR  (clk, reset, in_from_bus, out_to_bus, read, write, in_from_mem, out_to_mem, mem_read, mem_write);
+module PC   (clk, reset,              out_to_bus, read,        increment);
+module Port0(clk, reset, in_from_bus, out_to_bus, read, write, out_pin); //read is for the tri state buffer
+module Port1(clk, reset,              out_to_bus, read,        in_pin);
+module R0   (clk, reset, in_from_bus, out_to_bus, read, write);
+module R1   (clk, reset, in_from_bus, out_to_bus, read, write);
+module R2   (clk, reset, in_from_bus, out_to_bus, read, write);
+module R3   (clk, reset, in_from_bus, out_to_bus, read, write);
+module IR   (clk, reset, in_from_bus, out_to_bus, read, write); //out_en is not necessary

@@ -1,20 +1,21 @@
-module Port0(clk, reset, read, write, data_bus, data_out); //read is for the tri state buffer
+//module Port0(clk, reset, read, write, in_from_bus, out_to_bus, out); //read is for the tri state buffer
+module Port0(clk, reset, in_from_bus, out_to_bus, read, write, out_pin); 
 
-input clk, reset, read, write;
+input clk, reset, read, write; //read means read from the bus, the out_pin is always out
+input [15:0] in_from_bus;
 
-inout [15:0] data_bus;
-
-output[15:0] data_out;
+output[15:0] out_to_bus;
+output[15:0] out_pin;
 
 reg[15:0] register;
 
 always@(posedge clk or posedge reset)
 begin
   if(reset) register <= 0;
-  else if(write) register <= data_bus; //write into output when write == 1
+  else if(write) register <= in_from_bus; //write into output when write == 1
 end
 
-assign data_out = register;
-assign data_bus = read? register : 16'hzzzz; //read from output when read == 1
+assign out_pin = register;
+assign out_to_bus = read? register : 16'hzzzz; //read from output when read == 1
 
 endmodule

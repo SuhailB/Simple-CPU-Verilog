@@ -1,5 +1,5 @@
 `timescale 1ns/1ns
-module Port0_tb();
+module R_tb();
 
 reg clk, reset, read, write;
 reg[15:0] bus_in;
@@ -7,7 +7,7 @@ reg[15:0] bus_in;
 wire[15:0] bus_out;
 wire[15:0] out;
 
-Port0 TB(clk, reset, read, write, bus_in, bus_out, out);
+R0 TB(clk, reset, read, write, bus_in, bus_out);
 
 
 initial // Clock generator
@@ -18,16 +18,16 @@ initial // Clock generator
 
 initial begin
 
-//as an output
+reset = 0;
 read = 0;
 write = 0;
-reset = 0;
-bus_in = 16'hffff;
-#3 reset = 1;
+bus_in = 0;
+#10 reset = 1;
 #3 reset = 0;
-#10 read = 1;
+read = 1;
+#15
+bus_in = 15;
 write = 1;
-#10 read = 0;
 
 
 

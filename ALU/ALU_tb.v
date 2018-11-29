@@ -12,38 +12,54 @@ parameter XOR  = 5;
 parameter XNOR = 6;
 
 //inputs
-reg[5:0] IN1_i;
-reg[5:0] IN2_i;
+reg reset;
+reg clk;
+reg[15:0] Bus_in;
 reg IN1_en;
 reg IN2_en;
-reg OUT_EN;
+reg OUT_en;
+reg OUT_reg_en;
 reg[2:0] OpControl;
 
 //outputs
-wire[5:0] OUT;
+wire[15:0] Bus_out;
 
-ALU ALU_c (IN1_i, IN2_i, IN1_en, IN2_en, OUT, OUT_EN, OpControl);
+ALU ALU_c (reset, clk, Bus_in, IN1_en, IN2_en, OUT_en, OUT_reg_en, OpControl, Bus_out);
+
+initial // Clock generator
+  begin
+    clk = 1;
+    forever #10 clk = !clk;
+  end
 
 initial
 
 begin
-    IN1_i = 6'h55;
-    IN2_i = 6'hAA;
+
+    Bus_in = 16'h55;
+    reset = 0;
+    IN1_en = 0;
+    IN2_en = 0;
+    OUT_en = 0;
+    OUT_reg_en = 0;
+    OpControl = 0;
+    #1
+    reset = 1;
+    #1
+    reset = 0;
     IN1_en = 1;
     IN2_en = 1;
-    OUT_EN = 0;
-    OpControl = 8;
-    #10 OUT_EN = 1;
+    OUT_en = 1;
     #10 OpControl = ADD;
+    OUT_reg_en = 1;
     #10 OpControl = SUB;
     #10 OpControl = NOT;
     #10 OpControl = AND;
-   
     #10 OpControl = OR;
     #10 OpControl = XOR;
     #10 OpControl = XNOR;
     #10 OpControl = 7;
-    #10 OUT_EN = 0;
+    #10 OUT_en = 0;
     #10;
     $stop;
     

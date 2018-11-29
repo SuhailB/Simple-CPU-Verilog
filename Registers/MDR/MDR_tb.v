@@ -1,31 +1,20 @@
 `timescale 1ns/1ns
 module MDR_tb();
 
+//inputs
 reg clk;
 reg reset;
-reg R_W;
 reg in_bus_en, in_mem_en, out_bus_en, out_mem_en;
+reg[15:0] bus_in;
+reg[15:0] mem_in;
+
+//outputs
+wire[15:0] bus_out;
+wire[15:0] mem_out;
 
 
-reg [15:0] in1;
-wire [15:0] data_bus;
-wire  [15:0] out1;
-reg isIn1;
 
-reg [15:0] in2;
-wire [15:0] data_mem;
-wire  [15:0] out2;
-reg isIn2;
-
-MDR TB(clk, reset, R_W, in_bus_en, in_mem_en, out_bus_en, out_mem_en, data_bus, data_mem);
-
-assign out1 = data_bus;
-assign data_bus = isIn1? in1 : 16'hzzzz;
-
-
-assign out2 = data_mem;
-assign data_mem = isIn2? in2 : 16'hzzzz;
-
+MDR TB(clk, reset, in_bus_en, in_mem_en, out_bus_en, out_mem_en, bus_in, bus_out, mem_in, mem_out);
 
 
 initial // Clock generator
@@ -36,27 +25,24 @@ initial // Clock generator
 
 initial begin
 
-
 reset = 0;
-
-isIn1 = 0;
-isIn2 = 1;
-
-R_W = 0;
-in_bus_en = 0;
-in_mem_en = 0;
-out_bus_en = 0;
-out_mem_en = 0;
-in2 = 16'hffff;
-#10
-reset = 1;
-#10
-reset = 0;
-R_W = 1;
+in_bus_en = 0; in_mem_en = 0; out_bus_en = 0; out_mem_en = 0;
+bus_in = 1;
+mem_in = 15;
+#1 reset = 1;
+#1 reset = 0;
+in_bus_en = 1;
 #20
+in_bus_en = 0;
 in_mem_en = 1;
-#10
 out_bus_en = 1;
+out_mem_en = 1;
+#20
+in_bus_en = 0; in_mem_en = 0; out_bus_en = 0; out_mem_en = 0;
+reset = 1;
+#1 reset = 0;
+
+
 
 end
 endmodule
