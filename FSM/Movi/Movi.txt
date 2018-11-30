@@ -1,0 +1,2 @@
+
+FSM(read) and Ri(write)

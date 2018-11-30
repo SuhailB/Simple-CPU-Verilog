@@ -1,0 +1,2 @@
+MOV Ri Rj
+Ri(write) and Rj(read)

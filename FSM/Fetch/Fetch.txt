@@ -2,6 +2,5 @@ PC(read) and MAR(write)
 MAR(mem_read) and MEM(RW,EN)
 wait for memory MEM(MFC)
 MDR(mem_write) //I don't care about RW or EN I just read the value of the register
-MDR(read) and IR(write)
-
+MDR(read) and IR(write) and PC(increment)
 

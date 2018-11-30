@@ -10,7 +10,7 @@ reg[15:0] register;
 
 always@(posedge clk or posedge reset)
 begin
-  if(reset) register <= 0;
+  if(reset) register <= 16'haa55;
   else if(write) register <= in_from_bus;
 end
 

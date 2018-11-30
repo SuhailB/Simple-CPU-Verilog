@@ -1,0 +1,18 @@
+Add  Ri, Rj     0000
+Sub  Ri, Rj     0001
+Not  Ri         0010
+And  Ri, Rj     0011
+Or  Ri, Rj      0100
+Xor  Ri, Rj     0101 
+Xnor  Ri, Rj    0110
+Mov  Ri, Rj     0111
+Load  (Ri), Rj  1001
+Store  Ri, (Rj) 1010
+
+Addi Ri, #      1000
+Subi Ri, #      1001
+Movi  Ri, #     1111
+
+MOV R0 R2
+
+0111 000000 000010

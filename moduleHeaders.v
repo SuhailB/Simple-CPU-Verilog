@@ -13,14 +13,14 @@ module IR   (clk, reset, in_en, out_en, data_in, data_out); //out_en is not nece
 these components are the object (slaves) Memory and bus are masters
 
 module ALU  (clk, reset, in_from_bus, out_to_bus, read, writeIN1, writeIN2, alu_out_en, OpControl);
-module MAR  (clk, reset, in_from_bus, out_to_bus,       write, mem_read); 
+module MAR  (clk, reset, in_from_bus, out_to_mem,       write, mem_read); 
 module MDR  (clk, reset, in_from_bus, out_to_bus, read, write, in_from_mem, out_to_mem, mem_read, mem_write);
 module R0   (clk, reset, in_from_bus, out_to_bus, read, write);
 module R1   (clk, reset, in_from_bus, out_to_bus, read, write);
 module R2   (clk, reset, in_from_bus, out_to_bus, read, write);
 module R3   (clk, reset, in_from_bus, out_to_bus, read, write);
-module IR   (clk, reset, in_from_bus, out_to_bus,       write, FSM_read); 
+module IR   (clk, reset, in_from_bus, out_to_decoder,   write, FSM_read); 
 module Port0(clk, reset, in_from_bus, out_to_bus, read, write, out_pin); 
 module Port1(clk, reset,              out_to_bus, read,        in_pin);
 module PC   (clk, reset,              out_to_bus, read,        increment);
-module MEM(Dataout, MFC, EN, addr, datain, RW); 
+module MEM(MEM_to_MDR, MFC, EN, MAR_to_MEM, MDR_to_MEM, RW); 
