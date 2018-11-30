@@ -12,7 +12,7 @@
 `include "/Registers/RegisterFile/R3.v"
 `include "/Decoder/Decoder.v"
 
-module top(clk, reset, start_move, start_movi, fetch);
+module top(clk, reset);
 
 input clk, reset;
 
@@ -30,7 +30,7 @@ wire MDR_mem_write, MDR_read;
 wire IR_write;
 wire[15:0] out_to_decoder;
 wire move_done, movi_done;
-input start_move, start_movi, fetch;
+wire start_move, start_movi, start_fetch;
 
 wire R0_write, R0_read;
 wire R1_write, R1_read;
@@ -38,13 +38,13 @@ wire R2_write, R2_read;
 wire R3_write, R3_read;
 wire decode_done, fetch_done;
 
-//assign fetch = reset || move_done || movi_done;
+assign start_fetch = reset || move_done || movi_done;
 
-//Decoder Decoder_comp(fetch_done, out_to_decoder[15:12], start_move, start_movi);
+Decoder Decoder_comp(fetch_done, out_to_decoder[15:12], start_move, start_movi);
 
 Fetch Fetch_comp
 (
-    clk, reset, fetch, MFC,
+    clk, reset, start_fetch, MFC,
     PC_read, PC_increment,
     MAR_write, MAR_mem_read, 
     MEM_RW, MEM_EN, 

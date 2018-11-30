@@ -1,13 +1,13 @@
-module Decoder(clk, opCode, start_move, start_movi);
+module Decoder(enable, opCode, start_move, start_movi);
 
-input clk;
+input enable;
 input[3:0] opCode;
 
 output reg start_move, start_movi;
 
 always @(*)
 begin
-    if(clk) begin
+    if(enable) begin
     case(opCode)
 
         4'b0111: begin
