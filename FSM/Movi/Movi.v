@@ -7,7 +7,8 @@ module Movi
     R0_write,
     R1_write,
     R2_write,
-    R3_write
+    R3_write,
+    P0_write
 );
 
 input clk, reset, start;
@@ -17,6 +18,7 @@ output reg R0_write;
 output reg R1_write;
 output reg R2_write;
 output reg R3_write;
+output reg P0_write;
 output reg done;
 
 output[15:0] out_to_bus;
@@ -57,6 +59,7 @@ begin: outputs
             R1_write <= 0;
             R2_write <= 0;
             R3_write <= 0;
+            P0_write <= 0;
             read <= 0;
             done <= 0;
 
@@ -69,6 +72,7 @@ begin: outputs
                 1: R1_write <= 1;
                 2: R2_write <= 1;
                 3: R3_write <= 1;
+                4: P0_write <= 1;
             endcase
 
             read <= 1;
@@ -80,6 +84,7 @@ begin: outputs
             R1_write <= 0;
             R2_write <= 0;
             R3_write <= 0;
+            P0_write <= 0;
             read <= 0;
             done <= 1;
         end

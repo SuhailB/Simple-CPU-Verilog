@@ -9,6 +9,7 @@ module ALUI_FSM
     R1_write, R1_read,
     R2_write, R2_read,
     R3_write, R3_read,
+    P0_write, P0_read,
     ALU_opControl,
     ALU_alu_out_en, ALU_writeIN1, ALU_writeIN2, ALU_read
 );
@@ -21,6 +22,7 @@ output reg R0_write, R0_read;
 output reg R1_write, R1_read;
 output reg R2_write, R2_read;
 output reg R3_write, R3_read;
+output reg P0_write, P0_read;
 output reg[2:0] ALU_opControl;
 output reg ALU_alu_out_en, ALU_writeIN1, ALU_writeIN2, ALU_read;
 output reg done;
@@ -65,6 +67,7 @@ begin: outputs
             R1_write <= 0; R1_read <= 0;
             R2_write <= 0; R2_read <= 0;
             R3_write <= 0; R3_read <= 0;
+            P0_write <= 0; P0_read <= 0;
             ALU_opControl <= 0;
             ALU_alu_out_en <= 0; ALU_writeIN1 <=0; ALU_writeIN2 <= 0; ALU_read <= 0;
             read <= 0;
@@ -79,6 +82,7 @@ begin: outputs
             R1_write <= 0;
             R2_write <= 0;
             R3_write <= 0;
+            P0_write <= 0;
             ALU_opControl <= 0;
             ALU_alu_out_en <= 0; ALU_writeIN2 <= 0; ALU_read <= 0;
             read <= 0;
@@ -88,6 +92,7 @@ begin: outputs
                 1: R1_read <= 1;
                 2: R2_read <= 1;
                 3: R3_read <= 1;
+                4: P0_read <= 1;
             endcase
 
            ALU_writeIN1 <= 1;
@@ -101,6 +106,7 @@ begin: outputs
             R1_write <= 0;
             R2_write <= 0;
             R3_write <= 0;
+            P0_write <= 0;
             ALU_opControl <= 0;
             ALU_alu_out_en <= 0; ALU_writeIN1 <= 0; ALU_read <= 0;
 
@@ -109,6 +115,7 @@ begin: outputs
                 1: R1_read <= 0;
                 2: R2_read <= 0;
                 3: R3_read <= 0;
+                4: P0_read <= 0;
             endcase
             ///////////////////
 
@@ -124,6 +131,7 @@ begin: outputs
             R1_write <= 0; R1_read <= 0;
             R2_write <= 0; R2_read <= 0;
             R3_write <= 0; R3_read <= 0;
+            P0_write <= 0; P0_read <= 0;
             ALU_writeIN1 <=0; ALU_writeIN2 <= 0; ALU_read <= 0;
             read <= 0;
             //////////////////////////////////////////////
@@ -140,6 +148,7 @@ begin: outputs
             R1_read <= 0;
             R2_read <= 0;
             R3_read <= 0;
+            P0_read <= 0;
             ALU_opControl <= 0;
             ALU_alu_out_en <= 0; ALU_writeIN1 <=0; ALU_writeIN2 <= 0;
             read <= 0;
@@ -152,6 +161,7 @@ begin: outputs
                 1: R1_write <= 1;
                 2: R2_write <= 1;
                 3: R3_write <= 1;
+                4: P0_write <= 1;
             endcase
         end
 
@@ -160,6 +170,7 @@ begin: outputs
             R1_write <= 0; R1_read <= 0;
             R2_write <= 0; R2_read <= 0;
             R3_write <= 0; R3_read <= 0;
+            P0_write <= 0; P0_read <= 0;
             ALU_opControl <= 0;
             ALU_alu_out_en <= 0; ALU_writeIN1 <=0; ALU_writeIN2 <= 0; ALU_read <= 0;
             read <= 0;
