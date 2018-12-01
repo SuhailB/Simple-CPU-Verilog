@@ -1,0 +1,12 @@
+//store
+Ri(read) and MDR(write)
+Rj(read) and MAR(write)
+MDR(mem_read) and MEM(!RW) and MEM(EN)
+
+//load
+Ri(read) and MAR(write)
+MAR(mem_read) and MEM(RW) and MEM(EN)
+wait for MFC
+MDR(mem_write)
+MDR(read) and Rj(write)
+

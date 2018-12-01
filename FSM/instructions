@@ -6,8 +6,8 @@ Or  Ri, Rj      0100
 Xor  Ri, Rj     0101 
 Xnor  Ri, Rj    0110
 Mov  Ri, Rj     0111
-Load  (Ri), Rj  1001
-Store  Ri, (Rj) 1010
+Load  (Ri), Rj  1010
+Store  Ri, (Rj) 1011
 
 Addi Ri, #      1000
 Subi Ri, #      1001

@@ -22,6 +22,6 @@ begin
 end
 
 assign out_to_bus = read? register: 16'hzzzz;
-assign out_to_mem = mem_read? register: 16'hzzzz;
+assign out_to_mem = mem_read? register : 16'hzzzz;
 
 endmodule

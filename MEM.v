@@ -21,12 +21,18 @@ begin
             16'b0000000000000011: MEM_to_MDR = 16'b0111000100000001; 
             16'b0000000000000100: MEM_to_MDR = 16'b0101000010000001; 
             16'b0000000000000101: MEM_to_MDR = 16'b0010000010000000; 
+            16'b0000000000000110: MEM_to_MDR = 16'b1011000100000010;
+            16'b0000000000000111: MEM_to_MDR = 16'b1010000010000000;
             default: MEM_to_MDR = memorycell; 
         endcase 
     end
     
-    else memorycell = MDR_to_MEM; 
+    else 
+    
+        memorycell = MDR_to_MEM; 
+    
     #5 MFC = 1; 
+
 end
 
 always@(negedge EN) 
