@@ -19,11 +19,10 @@
 `include "/Registers/Port0/Port0.v"
 `include "/Registers/Port1/Port1.v"
 
-module top(clk, reset, input_pin, output_pin);
+module top(clk, reset, input_pin, output_pin, input_enable);
 
-input clk, reset;
+input clk, reset, input_enable;
 input[15:0] input_pin;
-
 output[15:0] output_pin;
 
 wire[15:0] bus;
@@ -66,9 +65,13 @@ assign start_fetch = reset || move_done || movi_done || ALU_done || ALUI_done ||
 
 Decoder Decoder_comp(fetch_done, opCode, start_move, start_movi, start_ALU, start_ALUI, start_load, start_store);
 
+reg flag = 1;
+always@(PC_read)
+if(bus==7) flag = 0; 
+
 Fetch Fetch_comp
 (
-    clk, reset, start_fetch, MFC,
+    clk, reset, start_fetch && flag, MFC,
     PC_read, PC_increment,
     MAR_write_fetch, MAR_mem_read_fetch, 
     MEM_RW_fetch, MEM_EN_fetch, 
@@ -84,7 +87,8 @@ Move Move_comp
     R1_write_move, R1_read_move,
     R2_write_move, R2_read_move,
     R3_write_move, R3_read_move,
-    P0_write_move, P0_read_move
+    P0_write_move, P0_read_move,
+                   P1_read_move
 );
 
 Movi Movi_comp
@@ -108,6 +112,7 @@ ALU_FSM ALU_FSM_comp
     R2_write_ALU, R2_read_ALU,
     R3_write_ALU, R3_read_ALU,
     P0_write_ALU, P0_read_ALU,
+                  P1_read_ALU,
     ALU_opControl,
     ALU_alu_out_en, ALU_writeIN1, ALU_writeIN2, ALU_read
 );
@@ -148,6 +153,7 @@ Store Store_comp
     R2_read_store,
     R3_read_store,
     P0_read_store,
+    P1_read_Store,
     MAR_write_store, MAR_mem_read_store, 
     MEM_RW_store, MEM_EN_store, 
     MDR_mem_read_store, MDR_write_store, 
@@ -159,6 +165,7 @@ assign R1_read = R1_read_move || R1_read_ALU || R1_read_ALUI || R1_read_load || 
 assign R2_read = R2_read_move || R2_read_ALU || R2_read_ALUI || R2_read_load || R2_read_store;
 assign R3_read = R3_read_move || R3_read_ALU || R3_read_ALUI || R3_read_load || R3_read_store;
 assign P0_read = P0_read_move || P0_read_ALU || P0_read_ALUI || P0_read_load || P0_read_store;
+assign P1_read = P1_read_move || P1_read_ALU || P1_read_Store|| input_enable;
 
 assign R0_write = R0_write_move || R0_write_movi || R0_write_ALU || R0_write_ALUI || R0_write_load;
 assign R1_write = R1_write_move || R1_write_movi || R1_write_ALU || R1_write_ALUI || R1_write_load;
@@ -182,13 +189,12 @@ assign MDR_read      = MDR_read_fetch      || MDR_read_load;
 // assign MDR_write     = MDR_write_store;
 
 ALU ALU_comp (clk, reset, bus, bus, read_ALU, writeIN1, writeIN2, alu_out_en, opControl);
-
 R0 R0_comp   (clk, reset, bus, bus, R0_read, R0_write);
 R1 R1_comp   (clk, reset, bus, bus, R1_read, R1_write);
 R2 R2_comp   (clk, reset, bus, bus, R2_read, R2_write);
 R3 R3_comp   (clk, reset, bus, bus, R3_read, R3_write);
 Port0 P0_comp(clk, reset, bus, bus, P0_read, P0_write, output_pin); 
-Port1 P1_comp(clk, reset, bus,      0,            input_pin);
+Port1 P1_comp(clk, reset, bus,      P1_read,            input_pin);
 PC PC_comp   (clk, reset, bus, PC_read, PC_increment);
 MAR MAR_comp (clk, reset, bus, MAR_to_MEM, MAR_write, MAR_mem_read); 
 MEM MEM_comp (MEM_to_MDR, MFC, MEM_EN, MAR_to_MEM, MDR_to_MEM, MEM_RW);  

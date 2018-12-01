@@ -8,7 +8,8 @@ module Move
     R1_write, R1_read,
     R2_write, R2_read,
     R3_write, R3_read,
-    P0_write, P0_read
+    P0_write, P0_read,
+              P1_read
 );
 
 input clk, reset, start;
@@ -19,6 +20,7 @@ output reg R1_write, R1_read;
 output reg R2_write, R2_read;
 output reg R3_write, R3_read;
 output reg P0_write, P0_read;
+output reg P1_read;
 
 output reg done;
 
@@ -56,6 +58,7 @@ begin: outputs
             R2_write <= 0; R2_read <= 0;
             R3_write <= 0; R3_read <= 0;
             P0_write <= 0; P0_read <= 0;
+            P1_read  <= 0;
             done <= 0;
 
         end
@@ -76,6 +79,7 @@ begin: outputs
                 2: R2_read <= 1;
                 3: R3_read <= 1;
                 4: P0_read <= 1;
+                5: P1_read <= 1;
             endcase
         end
 
@@ -85,6 +89,7 @@ begin: outputs
             R2_write <= 0; R2_read <= 0;
             R3_write <= 0; R3_read <= 0;
             P0_write <= 0; P0_read <= 0;
+            P1_read  <= 0;
             done <= 1;
         end
 

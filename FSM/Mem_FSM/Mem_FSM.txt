@@ -1,4 +1,9 @@
-//store
+//store 
+
+Store P0, R2
+
+P0 read
+
 Ri(read) and MDR(write)
 Rj(read) and MAR(write)
 MDR(mem_read) and MEM(!RW) and MEM(EN)
