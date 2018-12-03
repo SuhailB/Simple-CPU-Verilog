@@ -11,8 +11,8 @@ top topTB(clk, reset, input_pin, output_pin, input_enable);
 
 initial // Clock generator
   begin
-    clk = 1;
-    forever #10 clk = !clk;
+    clk = 0;
+    forever #50 clk = !clk;
   end
 
 initial
@@ -25,7 +25,7 @@ reset = 0;
 #5 reset = 1;
 #5 reset = 0;
 
-#1800
+#10000
 
 input_enable = 1;
 

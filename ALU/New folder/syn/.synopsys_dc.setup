@@ -1,0 +1,3 @@
+set link_path {/mscad/apps/Linux/synopsys/SAED_EDK90nm/Digital_Standard_Cell_Library/synopsys/models/saed90nm_typ.db}
+set target_library {/mscad/apps/Linux/synopsys/SAED_EDK90nm/Digital_Standard_Cell_Library/synopsys/models/saed90nm_typ.db}
+set symbol_library {/mscad/apps/Linux/synopsys/SAED_EDK90nm/Digital_Standard_Cell_Library/synopsys/icons/saed90nm.sdb}

@@ -40,7 +40,10 @@ always @(pres_state or start)
 begin: fsm
     case (pres_state)
 
-        INIT: if(start) next_state <= MAIN;
+        INIT: begin
+            if(start) next_state <= MAIN;
+            else next_state <= INIT;
+        end
         MAIN:   next_state <= NEXT_I;
         NEXT_I: next_state <= INIT;
         default: next_state<= INIT;

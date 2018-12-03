@@ -17,7 +17,7 @@ output reg IR_write;
 output reg done;
 
 reg[2:0] pres_state, next_state;
-parameter  st0 = 0, st1 = 1, st2 = 2, st3 = 3, WAIT1 = 4, init = 5, DONE = 6;
+parameter  init = 0, st0 = 1, st1 = 2, st2 = 3, st3 = 4, WAIT1 = 5,  DONE = 6;
 
 //FSM register
 always @(posedge clk or posedge reset)
@@ -32,7 +32,7 @@ begin: fsm
     case (pres_state)
 
         init: if(start) next_state <= st0;
-
+           
         st0: next_state <= st1;
 
         st1: next_state <= WAIT1;

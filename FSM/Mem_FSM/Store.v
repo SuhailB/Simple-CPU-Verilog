@@ -43,7 +43,10 @@ always @(pres_state or MFC or start)
 begin: fsm
     case (pres_state)
 
-        init: if(start) next_state <= st0;
+        init: begin
+            if(start) next_state <= st0;
+            else next_state <= init;
+        end
 
         st0: next_state <= st1;
 
