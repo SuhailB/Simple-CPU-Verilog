@@ -138,22 +138,22 @@ begin: outputs
             R3_read      <= 0;
             P0_read      <= 0;
             P1_read      <= 0;
-            MAR_write    <= 0; MAR_mem_read <= 0;
+            MAR_write    <= 0; MAR_mem_read <= 1;
             MEM_RW       <= 0; MEM_EN       <= 1;
             MDR_mem_read <= 1; MDR_write    <= 0;
         end
 
         WAIT1: begin
 
-            R0_read      <= 0;
-            R1_read      <= 0;
-            R2_read      <= 0;
-            R3_read      <= 0;
-            P0_read      <= 0;
-            P1_read      <= 0;
-            MAR_write    <= 0; MAR_mem_read <= 0;
-            MEM_RW       <= 0; MEM_EN       <= 0;
-            MDR_mem_read <= 0; MDR_write    <= 0;
+            // R0_read      <= 0;
+            // R1_read      <= 0;
+            // R2_read      <= 0;
+            // R3_read      <= 0;
+            // P0_read      <= 0;
+            // P1_read      <= 0;
+            // MAR_write    <= 0; MAR_mem_read <= 0;
+            // MEM_RW       <= 0; MEM_EN       <= 0;
+            // MDR_mem_read <= 0; MDR_write    <= 0;
           
         end
 

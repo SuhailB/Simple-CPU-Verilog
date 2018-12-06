@@ -8,7 +8,7 @@ output [15:0] MEM_to_MDR;
 output MFC; 
 
 reg [15:0] MEM_to_MDR, memorycell; 
-reg MFC; 
+reg MFC = 0; 
 
 
 always@(posedge EN) 
@@ -27,15 +27,11 @@ begin
         endcase 
     end
     
-    else 
+    else memorycell = MDR_to_MEM; 
     
-        memorycell = MDR_to_MEM; 
-    
+    //wait for the read or write to happen
     #5 MFC = 1; 
-
+    #50 MFC = 0;
 end
-
-always@(negedge EN) 
-    MFC = 0; 
 
       endmodule 

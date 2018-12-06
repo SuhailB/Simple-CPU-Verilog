@@ -91,15 +91,15 @@ begin: outputs
         end
 
         WAIT1: begin
-            PC_read         <= 0;
-            MAR_write       <= 0;
-            MAR_mem_read    <= 0;
-            MEM_RW          <= 0;
-            MEM_EN          <= 0;
-            MDR_mem_write   <= 0;
-            MDR_read        <= 0;
-            IR_write        <= 0;
-            PC_increment    <= 0;
+            // PC_read         <= 0;
+            // MAR_write       <= 0;
+            // MAR_mem_read    <= 0;
+            // MEM_RW          <= 0;
+            // MEM_EN          <= 0;
+            // MDR_mem_write   <= 0;
+            // MDR_read        <= 0;
+            // IR_write        <= 0;
+            // PC_increment    <= 0;
         end
 
         st2: begin
@@ -127,6 +127,14 @@ begin: outputs
         end
 
         DONE: begin
+            PC_read         <= 0;
+            MAR_write       <= 0;
+            MAR_mem_read    <= 0;
+            MEM_RW          <= 0;
+            MEM_EN          <= 0;
+            MDR_mem_write   <= 0;
+            MDR_read        <= 0;
+            IR_write        <= 0;
             done <= 1;
             PC_increment    <= 1;
         end

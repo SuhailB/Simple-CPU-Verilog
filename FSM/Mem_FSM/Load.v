@@ -121,15 +121,15 @@ begin: outputs
 
         WAIT1: begin
 
-            R0_write <= 0; R0_read <= 0;
-            R1_write <= 0; R1_read <= 0;
-            R2_write <= 0; R2_read <= 0;
-            R3_write <= 0; R3_read <= 0;
-            P0_write <= 0; P0_read <= 0;
-            MAR_write       <= 0; MAR_mem_read  <= 0;
-            MEM_RW          <= 0; MEM_EN        <= 0;
-                                  MDR_mem_write <= 0; 
-            MDR_read        <= 0; 
+            // R0_write <= 0; R0_read <= 0;
+            // R1_write <= 0; R1_read <= 0;
+            // R2_write <= 0; R2_read <= 0;
+            // R3_write <= 0; R3_read <= 0;
+            // P0_write <= 0; P0_read <= 0;
+            // MAR_write       <= 0; MAR_mem_read  <= 0;
+            // MEM_RW          <= 0; MEM_EN        <= 0;
+            //                       MDR_mem_write <= 0; 
+            // MDR_read        <= 0; 
           
         end
 
